@@ -134,9 +134,7 @@ class ESP_SPIcontrol:  # pylint: disable=too-many-public-methods, too-many-insta
     TLS_MODE = const(2)
 
     # pylint: disable=too-many-arguments
-    def __init__(
-        self, spi, cs, ready, reset, gpio0=None, *, debug=False
-    ):
+    def __init__(self, spi, cs, ready, reset, gpio0=None, *, debug=False):
         self._debug = debug
         self.set_psk = False
         self.set_crt = False
