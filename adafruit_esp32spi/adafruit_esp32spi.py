@@ -135,7 +135,7 @@ class ESP_SPIcontrol:  # pylint: disable=too-many-public-methods, too-many-insta
 
     # pylint: disable=too-many-arguments
     def __init__(
-        self, spi, cs_dio, ready_dio, reset_dio, gpio0_dio=None, *, debug=False
+        self, spi, cs, ready, reset, gpio0=None, *, debug=False
     ):
         self._debug = debug
         self.set_psk = False
@@ -145,11 +145,11 @@ class ESP_SPIcontrol:  # pylint: disable=too-many-public-methods, too-many-insta
         self._sendbuf = bytearray(256)  # buffer for command sending
         self._socknum_ll = [[0]]  # pre-made list of list of socket #
 
-        self._spi_device = SPIDevice(spi, cs_dio, baudrate=8000000)
-        self._cs = cs_dio
-        self._ready = ready_dio
-        self._reset = reset_dio
-        self._gpio0 = gpio0_dio
+        self._spi_device = SPIDevice(spi, cs, baudrate=8000000)
+        self._cs = cs
+        self._ready = ready
+        self._reset = reset
+        self._gpio0 = gpio0
         self._cs.direction = Direction.OUTPUT
         self._ready.direction = Direction.INPUT
         self._reset.direction = Direction.OUTPUT
