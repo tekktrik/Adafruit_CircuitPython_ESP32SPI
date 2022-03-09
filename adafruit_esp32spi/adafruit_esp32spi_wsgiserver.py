@@ -103,6 +103,8 @@ class WSGIServer:
         if self._client_sock and self._client_sock.available():
             environ = self._get_environ(self._client_sock)
             result = self.application(environ, self._start_response)
+            if result is None:
+                raise RuntimeError("HTTP response return not given for request handler")
             self.finish_response(result)
 
     def finish_response(self, result):
